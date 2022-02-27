@@ -1,15 +1,8 @@
-якщо у вас мак, то можна k6 через 
+якщо у вас мак, то устанапвливаем k6 через 
 ```
 brew install k6
 ```
-
-
-```
-git clone https://github.com/grafana/k6.git
-cd k6
-```
-
-создайте новый файл ./samples/attack_1.js
+создайте новый файл ./attack_1.js
 
 вставьте этот листинг
 
@@ -64,6 +57,31 @@ export default function() {
   http.batch(reqs);
 };
 ```
+
+запустите
+
+```
+k6 run ./attack_1.js
+```
+
+
+
+
+
+на другие ОС
+
+
+
+
+
+```
+git clone https://github.com/grafana/k6.git
+cd k6
+```
+
+создайте новый файл ./samples/attack_1.js
+
+вставьте тот же листинг
 
 запустите
 
