@@ -20,7 +20,7 @@ export let options = {
 
 export default function() {
   http.batch([
-"<IP ADDRESSES GO HERE>",
+   http.get("<IP ADDRESSES GO HERE>", { headers: { host: "<url>" } }),
   ]);
 };
 
