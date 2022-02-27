@@ -19,22 +19,34 @@ export let options = {
 }
 
 export default function() {
-  let reqs = [
-    {
-      'method': 'GET',
-      'url': 'https://<ip>',
-      'params': {
-        'headers': { 'Host': '<url>' }
-      }
-    }
+  let targets = {
+    '<url>': '<ip>'
+  }
+  let reqs = []
 
-  ]
+  for (let k in targets) {
+    reqs.push(
+      {
+        'method': 'GET',
+        'url': `https://${targets[k]}`,
+        'params': {
+          'headers': { 'Host': `${k}` }
+        }
+      }
+    )
+    reqs.push(
+      {
+        'method': 'GET',
+        'url': `http://${targets[k]}`,
+        'params': {
+          'headers': { 'Host': `${k}` }
+        }
+      }
+    )
+
+  }
   http.batch(reqs);
 };
-
-
-
-
 ```
 
 запустите
