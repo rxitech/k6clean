@@ -12,17 +12,27 @@ import { check } from 'k6';
 import http from 'k6/http';
 
 export let options = {
-  //noConnextionRefuse: false,
+  noConnextionRefuse: false,
   stages: [
-      { duration: "1h", target: 2 },
+      { duration: "10m", target: 5 },
   ]
 }
 
 export default function() {
-  http.batch([
-   http.get("<IP ADDRESSES GO HERE>", { headers: { host: "<url>" } }),
-  ]);
+  let reqs = [
+    {
+      'method': 'GET',
+      'url': 'https://<ip>',
+      'params': {
+        'headers': { 'Host': '<url>' }
+      }
+    }
+
+  ]
+  http.batch(reqs);
 };
+
+
 
 
 ```
