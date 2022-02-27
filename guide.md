@@ -12,7 +12,7 @@ import { check } from 'k6';
 import http from 'k6/http';
 
 export let options = {
-  noConnextionRefuse: false,
+  insecureSkipTLSVerify: true,
   stages: [
       { duration: "10m", target: 5 },
   ]
