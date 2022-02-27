@@ -1,3 +1,9 @@
+якщо у вас мак, то можна k6 через 
+```
+brew install k6
+```
+
+
 ```
 git clone https://github.com/grafana/k6.git
 cd k6
