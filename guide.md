@@ -30,7 +30,11 @@ export default function() {
         'method': 'GET',
         'url': `https://${targets[k]}`,
         'params': {
-          'headers': { 'Host': `${k}` }
+          'headers': {
+            'Host': `${k}`,
+            'referrer': "",
+            'user-agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0',
+          }
         }
       }
     )
@@ -39,10 +43,15 @@ export default function() {
         'method': 'GET',
         'url': `http://${targets[k]}`,
         'params': {
-          'headers': { 'Host': `${k}` }
+          'headers': { 'Host': `${k}`,
+          'referrer': "",
+          'user-agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0',
+          }
         }
       }
     )
+  }
+
 
   }
   http.batch(reqs);
