@@ -64,7 +64,7 @@ export default function() {
           'headers': {
             'Host': `${k}`,
             'referrer': "",
-            'user-agent': userAgents[agentIndex1]
+            'user-agent': userAgents[agentIndex2]
           }
         }
       }
