@@ -36,7 +36,7 @@ const userAgents = [
 
 export default function() {
   let targets = {
-    '<url>': '<ip>'
+    'ip address': 'url string'
   }
   let reqs = []
 
@@ -45,10 +45,10 @@ export default function() {
     reqs.push(
       {
         'method': 'GET',
-        'url': `https://${targets[k]}`,
+        'url': `https://${k}`,
         'params': {
           'headers': {
-            'Host': `${k}`,
+            'Host': `${targets[k]}`,
             'referrer': "",
             'user-agent': userAgents[agentIndex1]
           }
@@ -59,20 +59,21 @@ export default function() {
     reqs.push(
       {
         'method': 'GET',
-        'url': `http://${targets[k]}`,
+        'url': `http://${k}`,
         'params': {
           'headers': {
-            'Host': `${k}`,
+            'Host': `${targets[k]}`,
             'referrer': "",
-            'user-agent': userAgents[agentIndex2]
+            'user-agent': userAgents[agentIndex1]
           }
         }
       }
     )
   }
-
   http.batch(reqs);
 };
+
+
 ```
 
 запустите
