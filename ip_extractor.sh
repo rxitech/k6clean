@@ -1,6 +1,6 @@
 #!/bin/bash
 
-array=("<url without protocol>", "< .... >")
+array=("<url without protocol>" "< .... >")
 
 
 for str in ${array[@]}; do
