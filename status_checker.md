@@ -10,5 +10,5 @@ chmod +x status_checker.sh
 
 Запустіть
 ```
-./status_checher.sh example.com google.com ....
+./status_checker.sh example.com google.com ....
 ```
