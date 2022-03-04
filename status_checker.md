@@ -12,3 +12,16 @@ chmod +x status_checker.sh
 ```
 ./status_checker.sh example.com google.com ....
 ```
+
+для файла
+```
+less hosts_to_check.txt | xargs ./status_checker.sh
+```
+
+где `hosts_to_check.txt`:
+
+```
+example.com
+google.com
+...
+```
