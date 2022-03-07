@@ -17,4 +17,4 @@ for host in ${hosts[@]}; do
 done
 runner="${runner} && fg"
 
-$($runner)
+eval $runner
