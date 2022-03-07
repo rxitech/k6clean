@@ -22,11 +22,11 @@ pip install -r requirements.txt
 curl https://raw.githubusercontent.com/rxitech/k6clean/master/runner.sh > runner.sh
 ```
 
-5. Создайте targets.json файл с целями в следующем формате
+5. Создайте targets.json файл с целями в следующем формате (без запятой после последнего значения!)
 ```
 {
  "127.0.0.1": "localhost",
- "172.217.19.78": "google.com",
+ "172.217.19.78": "google.com"
 }
 ```
 
