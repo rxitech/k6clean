@@ -1,7 +1,7 @@
 1. Установите инструментарий
 ```
 sudo apt-get update
-sudo apt-get install -y jq python3-pip python-pyasn1
+sudo apt-get install -y python3-pip python-pyasn1
 pip install pyasn1==0.4.6
 ```
 
@@ -69,15 +69,13 @@ curl https://raw.githubusercontent.com/rxitech/k6clean/master/runner.sh > runner
 chmod +x ./runner.sh
 ```
 
-6. Создайте targets.json файл с целями в следующем формате (без запятой после последнего значения!)
+6. Создайте targets.csv файл с целями в следующем формате (без запятой после последнего значения!)
 ```
-{
- "127.0.0.1": "localhost",
- "172.217.19.78": "google.com"
-}
+localhost;127.0.0.1;
+google.com;172.217.19.78;443;80;8080;
 ```
 
 7. Запустите раннер передав файл с целями и продолжительность выполнения в секундах
 ```
-./runner.sh targets.json 300
+./runner.sh targets.csv 300
 ```
