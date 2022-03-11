@@ -14,7 +14,7 @@ export let options = {
   insecureSkipTLSVerify: true,
   noConnectionReuse: true,
   vus: 10, // target
-  duration: '10m',
+  duration: '60m',
   dns: {
     'ttl': '0s',
     'select': 'roundRobin',
@@ -33,11 +33,27 @@ const userAgents = [
 	'Mozilla/5.0 (compatible; MSIE 10.0; Macintosh; Intel Mac OS X 10_7_3; Trident/6.0)',
 ]
 
+const content = open('./targets.csv')
 
 export default function() {
-  let targets = {
-    'ip address': 'url string'
+  const lines = content.split('\n')
+
+  const targets = {}
+  for (let line of lines) {
+    if (line === '' || line === '\n') {
+      continue
+    }
+
+    const row = line.split(';').reverse()
+    const uri = row.pop()
+    const ip = row.pop()
+    for (let port of row) {
+      if (port === '8080' || port === '443' || port === '80' || port === '8000' || port === '' || !port) {
+        targets[ip] = uri
+      }
+    }
   }
+
   let reqs = []
 
   for (let k in targets) {
@@ -73,6 +89,14 @@ export default function() {
   http.batch(reqs);
 };
 
+
+```
+
+добавьте список целей в `./targets.csv` и сохраните его в тойже папке в формате
+
+```
+localhost;127.0.0.1;
+google.com;172.217.19.78;443;80;8080;
 
 ```
 
