@@ -12,8 +12,17 @@ runner=""
 METHODS=("TCP" "UDP" "SYN" "VSE" "MINECRAFT" )
 
 lineCount=$(wc -l < $1)
+if [ $lineCount -ge 10 ] ; then
+        lineCount=10
+fi
+
+pL=0
 
 while read line; do
+        if [ $pL -ge $lineCount ] ; then
+                break
+        fi
+
         readarray -d ";" -t row <<< "$line"
         length=${#row[@]}
 
@@ -49,6 +58,7 @@ while read line; do
                         fi
                 done
         done
+        pL+=1
 done < $1
 
 eval $runner
