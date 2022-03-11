@@ -49,7 +49,7 @@ export default function() {
     const ip = row.pop()
     for (let port of row) {
       if (port === '8080' || port === '443' || port === '80' || port === '8000' || port === '' || !port) {
-        targets[ip] = uri
+        targets[uri] = ip
       }
     }
   }
