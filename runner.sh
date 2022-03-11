@@ -12,8 +12,9 @@ runner=""
 METHODS=("TCP" "UDP" "SYN" "VSE" "MINECRAFT" )
 
 lineCount=$(wc -l < $1)
-if [ $lineCount -ge 10 ] ; then
-        lineCount=10
+max=$3
+if [ $lineCount -ge $max ] ; then
+        lineCount=$max
 fi
 
 pL=0
@@ -58,7 +59,8 @@ while read line; do
                         fi
                 done
         done
-        pL+=1
+        ((pL++))
 done < $1
+
 
 eval $runner
