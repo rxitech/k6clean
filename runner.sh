@@ -2,7 +2,6 @@
 
 maxThreads=500
 
-runner=""
 
 # ALL L4 methods
 # "TCP", "UDP", "SYN", "VSE", "MINECRAFT", "MEM", "NTP", "DNS", "ARD", "CHAR", "RDP"
@@ -12,18 +11,11 @@ runner=""
 METHODS=("TCP" "UDP" "SYN" "VSE" "MINECRAFT" )
 
 lineCount=$(wc -l < $1)
-max=$3
-if [ $lineCount -ge $max ] ; then
-        lineCount=$max
-fi
-
+batchSize=$3
 pL=0
+runner=""
 
 while read line; do
-        if [ $pL -ge $lineCount ] ; then
-                break
-        fi
-
         readarray -d ";" -t row <<< "$line"
         length=${#row[@]}
 
@@ -33,6 +25,13 @@ while read line; do
 
         threadsCount=$(( maxThreads / ( ( length - 2 ) * ${#METHODS[@]} * lineCount ) ))
         for (( i=2; i < ${length}; i++ )); do
+
+                if [ $pL -ge $batchSize ] ; then
+                        eval $runner
+                        pL=0
+                        runner=""
+                fi
+
                 port=${row[$i]}
                 if [ -z $port ]; then
                         if [ -z "$runner" ]; then
@@ -58,9 +57,9 @@ while read line; do
                                 runner="${runner} 0"
                         fi
                 done
-        done
-        ((pL++))
-done < $1
 
+                ((pL++))
+        done
+done < $1
 
 eval $runner
